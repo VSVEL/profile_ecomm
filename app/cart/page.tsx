@@ -26,7 +26,7 @@ const CartPage = () => {
         <div className="text-center">
           <h1 className="text-xl font-semibold mb-4">Your Cart is Empty</h1>
           <p className="mb-4">
-            It looks like you don't have any items in your cart.
+            {"It looks like you don't have any items in your cart."}
           </p>
           <p className="mb-6">
             Browse through our products and add some to your cart!
