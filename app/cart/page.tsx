@@ -88,9 +88,16 @@ const CartPage = () => {
             <p className="text-2xl font-bold mt-4">
               Total: ${total.toFixed(2)}
             </p>
-            <button className="mt-4 bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600">
-              Checkout
-            </button>
+            <div className="flex space-x-4">
+              <button className="mt-4 bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600">
+                Checkout
+              </button>
+              <Link href="/" passHref>
+                <Button variant="outline" className="mt-4 px-4 py-2 rounded">
+                  Continue Shopping
+                </Button>
+              </Link>
+            </div>
           </div>
         </>
       )}
