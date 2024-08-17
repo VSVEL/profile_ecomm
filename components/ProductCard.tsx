@@ -31,7 +31,7 @@ const ProductCard: FC<ProductCardProps> = ({ product }) => {
       quantity: 1,
     });
     toast.success(<CustomToast message={`${product.title} added to cart!`} />, {
-      duration: 4000, // Optional: Duration for which the toast is visible
+      duration: 800, // Optional: Duration for which the toast is visible
     });
   };
 
