@@ -1,5 +1,4 @@
-// components/CartItem.tsx
-import { FC, useState } from "react";
+import { FC } from "react";
 
 interface CartItemProps {
   item: {
@@ -18,23 +17,8 @@ const CartItem: FC<CartItemProps> = ({
   onQuantityChange,
   onRemoveItem,
 }) => {
-  const [quantity, setQuantity] = useState(item.quantity);
-
   const handleQuantityChange = (newQuantity: number) => {
-    if (newQuantity >= 0) {
-      setQuantity(newQuantity);
-      onQuantityChange(item.id, newQuantity);
-    }
-  };
-
-  const handleIncrement = () => {
-    handleQuantityChange(quantity + 1);
-  };
-
-  const handleDecrement = () => {
-    if (quantity > 0) {
-      handleQuantityChange(quantity - 1);
-    }
+    onQuantityChange(item.id, newQuantity);
   };
 
   return (
@@ -49,28 +33,30 @@ const CartItem: FC<CartItemProps> = ({
         <p className="text-sm text-gray-600">${item.price.toFixed(2)}</p>
         <div className="flex items-center mt-2">
           <button
-            onClick={handleDecrement}
-            disabled={quantity === 0}
-            className="bg-gray-300 text-black px-2 py-1 rounded-l hover:bg-gray-400"
+            onClick={() => handleQuantityChange(item.quantity - 1)}
+            disabled={item.quantity <= 1}
+            className={`px-2 py-1 border rounded-l ${
+              item.quantity <= 1 ? "cursor-not-allowed opacity-50" : ""
+            }`}
           >
             -
           </button>
           <input
             type="number"
-            value={quantity}
-            min="0"
+            value={item.quantity}
+            min="1"
             readOnly
-            className="w-16 px-2 py-1 border-t border-b border-gray-300 text-center"
+            className="w-16 px-2 py-1 border-t border-b"
           />
           <button
-            onClick={handleIncrement}
-            className="bg-gray-300 text-black px-2 py-1 rounded-r hover:bg-gray-400"
+            onClick={() => handleQuantityChange(item.quantity + 1)}
+            className="px-2 py-1 border rounded-r"
           >
             +
           </button>
           <button
             onClick={() => onRemoveItem(item.id)}
-            className="ml-4 bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600"
+            className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 ml-4"
           >
             Remove
           </button>
